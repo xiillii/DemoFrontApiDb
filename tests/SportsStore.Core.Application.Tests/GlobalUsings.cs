@@ -1,0 +1,10 @@
+﻿global using AutoMapper;
+global using Moq;
+global using Shouldly;
+global using SportsStore.Core.Application.Contracts.Persistance;
+global using SportsStore.Core.Application.Exceptions;
+global using SportsStore.Core.Application.Features.Product.Commands.CreateProduct;
+global using SportsStore.Core.Application.Features.Product.Queries.GetProductDetails;
+global using SportsStore.Core.Application.Features.Product.Queries.GetProducts;
+global using SportsStore.Core.Application.MappingProfiles;
+global using SportsStore.Core.Domain;
