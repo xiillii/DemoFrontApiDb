@@ -1,24 +1,51 @@
-﻿@{
+﻿@using SportsStore.MvcClient.Models.Products
+@model List<ProductViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Products</h1>
     <br />
+    <div class="m-2 d-flex justify-content-end">
+        <button class="btn btn-success">Add Product</button>
+    </div>
 
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Category</th>
-                <th scope="col">Price</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    @ViewBag.Message
 
-        </tbody>
-    </table>
+    @if (Model == null)
+    {
+        <p>Product data empty...</p>
+    }
+    else
+    {
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model){
+                    <tr>
+                        <th scope="row">@product.Id</th>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Category</td>
+                        <td>@product.Price</td>
+                        <td>
+                            <button class="btn btn-info btn-sm">Details</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    
 </div>

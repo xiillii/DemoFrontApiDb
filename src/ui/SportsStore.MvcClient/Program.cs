@@ -1,6 +1,21 @@
+using SportsStore.MvcClient.Contracts;
+using SportsStore.MvcClient.Services;
+using SportsStore.MvcClient.Services.Base;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services
+    .AddHttpClient<IClient, Client>(client =>
+                                client.BaseAddress = new Uri(builder
+                                                            .Configuration
+                                                            .GetSection("Backend:UriBase").Value ?? ""));
+
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
